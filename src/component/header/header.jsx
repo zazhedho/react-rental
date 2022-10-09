@@ -9,7 +9,7 @@ function header(props) {
     <>
       <Navbar expand="lg" className={style.nav}>
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               alt=""
               src={logo}

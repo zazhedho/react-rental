@@ -9,7 +9,7 @@ export const Card = styled.div`
   border-radius: 10px;
   padding: 1em;
   display: flex;
-  // align-items: flex-end;
+  align-items: flex-end;
   background-image: url('${({ bg, backdrop }) => bg || backdrop}');
   background-size: cover;
   background-position: center;
@@ -23,7 +23,7 @@ export const Card = styled.div`
     align-self: flex-end;
     border-top-right-radius: 10px;
     height: 56px;
-    width: 160px;
+    width: 140px;
     color: black;
     padding-left: 5px;
 

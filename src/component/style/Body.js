@@ -1,15 +1,6 @@
 import styled from 'styled-components'
 
 export const Body = styled.div`
-  height: 767px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
-    url('https://res.cloudinary.com/zazh/image/upload/v1665070935/image/resi-kling-jkmQz2eVjuQ-unsplash_1_aenbc7.png');
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-
   h1 {
     color: white;
     font-family: Playfair Display;

@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <>
       <Foot>
-        <Content>
+        <Content className="ms-auto">
           {' '}
           <div>
             <img

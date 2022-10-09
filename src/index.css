@@ -28,7 +28,7 @@ a {
 
 .container {
   width: 90%;
-  padding-top: 50px;
+  padding-top: auto;
   margin: 20px auto;
 }
 

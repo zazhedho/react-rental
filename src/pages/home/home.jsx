@@ -14,11 +14,10 @@ export class Home extends Component {
   }
 
   getPopularVehicle = async () => {
-    const apiUrl =
-      'https://go-vehiclerent.herokuapp.com/api/v1/vehicles/popular'
-    console.log(apiUrl)
     try {
-      const { data } = await axios.get(apiUrl)
+      const { data } = await axios.get(
+        process.env.REACT_APP_BASE_URL + '/vehicles/popular'
+      )
       const dataPopularVehicles = data.data
       this.setState({ data: dataPopularVehicles })
     } catch (error) {

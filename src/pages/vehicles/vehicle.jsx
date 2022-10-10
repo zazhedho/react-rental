@@ -21,7 +21,7 @@ export class Vehicle extends Component {
   getPopularVehicle = async () => {
     try {
       const { data } = await axios.get(
-        process.env.REACT_APP_BASE_URL + '/vehicles/popular'
+        'https://go-vehiclerent.herokuapp.com/api/v1/vehicles/popular'
       )
       const dataPopularVehicles = data.data
       this.setState({ data: dataPopularVehicles })
@@ -33,7 +33,7 @@ export class Vehicle extends Component {
   getCars = async () => {
     try {
       const { data: cars } = await axios.get(
-        process.env.REACT_APP_BASE_URL + '/vehicles/category?category=cars'
+        'https://go-vehiclerent.herokuapp.com/api/v1/vehicles/category?category=cars'
       )
       const dataCars = cars.data
       this.setState({ cars: dataCars })
@@ -45,7 +45,7 @@ export class Vehicle extends Component {
   getMotorcycle = async () => {
     try {
       const { data: motorcycle } = await axios.get(
-        process.env.REACT_APP_BASE_URL + '/vehicles/category?category=motor'
+        'https://go-vehiclerent.herokuapp.com/api/v1/vehicles/category?category=motor'
       )
       const dataMotorcycle = motorcycle.data
       this.setState({ motorcycle: dataMotorcycle })
@@ -57,7 +57,7 @@ export class Vehicle extends Component {
   getBike = async () => {
     try {
       const { data: bike } = await axios.get(
-        process.env.REACT_APP_BASE_URL + '/vehicles/category?category=bike'
+        'https://go-vehiclerent.herokuapp.com/api/v1/vehicles/category?category=bike'
       )
       const dataBike = bike.data
       this.setState({ bike: dataBike })

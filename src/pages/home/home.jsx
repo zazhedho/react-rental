@@ -14,7 +14,8 @@ export class Home extends Component {
   }
 
   getPopularVehicle = async () => {
-    const apiUrl = process.env.REACT_APP_BASE_URL + '/vehicles/popular'
+    const apiUrl =
+      'https://go-vehiclerent.herokuapp.com/api/v1/vehicles/popular'
     console.log(apiUrl)
     try {
       const { data } = await axios.get(apiUrl)

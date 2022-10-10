@@ -14,8 +14,10 @@ export class Home extends Component {
   }
 
   getPopularVehicle = async () => {
+    const apiUrl = process.env.REACT_APP_BASE_URL + '/vehicles/popular'
+    console.log(apiUrl)
     try {
-      const { data } = await axios.get(process.env.REACT_APP_BASE_URL)
+      const { data } = await axios.get(apiUrl)
       const dataPopularVehicles = data.data
       this.setState({ data: dataPopularVehicles })
     } catch (error) {
@@ -95,16 +97,18 @@ export class Home extends Component {
           </div>
 
           <div className="content">
-            {this.state.data.map((v) => {
-              return (
-                <Card
-                  key={v.vehicle_id}
-                  id={v.vehicle_id}
-                  title={v.name}
-                  image={v.image}
-                  city={v.location}
-                />
-              )
+            {this.state.data.map((v, k) => {
+              if (k < 4) {
+                return (
+                  <Card
+                    key={k}
+                    id={v.vehicle_id}
+                    title={v.name}
+                    image={v.image}
+                    city={v.location}
+                  />
+                )
+              }
             })}
           </div>
 

@@ -25,7 +25,7 @@ function header(props) {
                 <Link to={'/'} className={style.a}>
                   Home
                 </Link>
-                <Link to={'/vehicle'} className={style.a}>
+                <Link to={'/vehicles'} className={style.a}>
                   Vehicle Type
                 </Link>
                 <Link to={'/histories'} className={style.a}>

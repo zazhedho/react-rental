@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Row, Col, Button } from 'react-bootstrap'
+import { Form, Row, Col, Button, Container } from 'react-bootstrap'
 import style from './vehicle.module.css'
 import Header from '../../component/header/header'
 import Footer from '../../component/footer/footer'
@@ -77,112 +77,114 @@ export class Vehicle extends Component {
     return (
       <>
         <Header />
-        <div className={style.container}>
-          <div className={style.search}>
-            <Form>
-              <Row>
-                <Col>
-                  <Form.Control type="name" placeholder="Vehicle Name" />
-                </Col>
+        <Container>
+          <div className={style.container}>
+            <div className={style.search}>
+              <Form>
+                <Row>
+                  <Col>
+                    <Form.Control type="name" placeholder="Vehicle Name" />
+                  </Col>
 
-                <Col>
-                  <Link to={'vehicles/search?name='}>
-                    <Button
-                      variant="warning"
-                      size="sm"
-                      className={style.button1}
-                    >
-                      Search
-                    </Button>{' '}
-                  </Link>
-                </Col>
-              </Row>
-            </Form>
-          </div>
-          <div className="sub">
-            <h2>popular in towns</h2>
-            <a href="#viewall">view all {'>'} </a>
-          </div>
+                  <Col>
+                    <Link to={'vehicles/search'}>
+                      <Button
+                        variant="warning"
+                        size="sm"
+                        className={style.button1}
+                      >
+                        Search
+                      </Button>{' '}
+                    </Link>
+                  </Col>
+                </Row>
+              </Form>
+            </div>
+            <div className="sub">
+              <h2>popular in towns</h2>
+              <Link to={'/vehicles/all'}>view all {'>'} </Link>
+            </div>
 
-          <div className="content">
-            {this.state.data.map((v, k) => {
-              if (k < 4) {
-                return (
-                  <Card
-                    key={k}
-                    id={v.vehicle_id}
-                    title={v.name}
-                    image={v.image}
-                    city={v.location}
-                  />
-                )
-              }
-            })}
-          </div>
+            <div className="content">
+              {this.state.data.map((v, k) => {
+                if (k < 4) {
+                  return (
+                    <Card
+                      key={k}
+                      id={v.vehicle_id}
+                      title={v.name}
+                      image={v.image}
+                      city={v.location}
+                    />
+                  )
+                }
+              })}
+            </div>
 
-          <div className="sub">
-            <h2>Cars</h2>
-            <a href="#viewall">view all {'>'} </a>
-          </div>
+            <div className="sub">
+              <h2>Cars</h2>
+              <Link to={'/vehicles/cars'}>view all {'>'} </Link>
+            </div>
 
-          <div className="content">
-            {this.state.cars.map((v, k) => {
-              if (k < 4) {
-                return (
-                  <Card
-                    key={k}
-                    id={v.vehicle_id}
-                    title={v.name}
-                    image={v.image}
-                    city={v.location}
-                  />
-                )
-              }
-            })}
-          </div>
+            <div className="content">
+              {this.state.cars.map((v, k) => {
+                if (k < 4) {
+                  return (
+                    <Card
+                      key={k}
+                      id={v.vehicle_id}
+                      title={v.name}
+                      image={v.image}
+                      city={v.location}
+                    />
+                  )
+                }
+              })}
+            </div>
 
-          <div className="sub">
-            <h2>Motorcycles</h2>
-            <a href="#viewall">view all {'>'} </a>
-          </div>
+            <div className="sub">
+              <h2>Motorcycles</h2>
+              <Link to={'/vehicles/motorcycle'}>view all {'>'} </Link>
+            </div>
 
-          <div className="content">
-            {this.state.motorcycle.map((v, k) => {
-              if (k < 4) {
-                return (
-                  <Card
-                    key={k}
-                    id={v.vehicle_id}
-                    title={v.name}
-                    image={v.image}
-                    city={v.location}
-                  />
-                )
-              }
-            })}
-          </div>
+            <div className="content">
+              {this.state.motorcycle.map((v, k) => {
+                if (k < 4) {
+                  return (
+                    <Card
+                      key={k}
+                      id={v.vehicle_id}
+                      title={v.name}
+                      image={v.image}
+                      city={v.location}
+                    />
+                  )
+                }
+              })}
+            </div>
 
-          <div className="sub">
-            <h2>Bike</h2>
-            <a href="#viewall">view all {'>'} </a>
-          </div>
+            <div className="sub">
+              <h2>Bike</h2>
+              <Link to={'/vehicles/bike'}>view all {'>'} </Link>
+            </div>
 
-          <div className="content">
-            {this.state.bike.map((v, k) => {
-              if (k < 4) {
-                return (
-                  <Card
-                    key={k}
-                    id={v.vehicle_id}
-                    title={v.name}
-                    image={v.image}
-                    city={v.location}
-                  />
-                )
-              }
-            })}
+            <div className="content">
+              {this.state.bike.map((v, k) => {
+                if (k < 4) {
+                  return (
+                    <Card
+                      key={k}
+                      id={v.vehicle_id}
+                      title={v.name}
+                      image={v.image}
+                      city={v.location}
+                    />
+                  )
+                }
+              })}
+            </div>
           </div>
-        </div>
+        </Container>
         <Footer />
       </>
     )

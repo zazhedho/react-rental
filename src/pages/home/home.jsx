@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import style from './home.module.css'
+import { Link } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Header from '../../component/header/header'
 import Footer from '../../component/footer/footer'
@@ -89,47 +90,48 @@ export class Home extends Component {
             <Button>explore</Button>
           </Container>
         </Body>
-
-        <div className={style.container}>
-          <div className="sub">
-            <h2>popular in towns</h2>
-            <a href="/vehicles">view all {'>'} </a>
-          </div>
-
-          <div className="content">
-            {this.state.data.map((v, k) => {
-              if (k < 4) {
-                return (
-                  <Card
-                    key={k}
-                    id={v.vehicle_id}
-                    title={v.name}
-                    image={v.image}
-                    city={v.location}
-                  />
-                )
-              }
-            })}
-          </div>
-
-          <div className={style.sub}>
-            <h2>testimonials</h2>
-          </div>
-
-          <div className="testimoni">
-            <div>
-              "it was the right decision to rent vehicle here, I spent less
-              money and enjoy the trip. It was an amazing experience to have a
-              ride for wildlife trip!"
-              <span className="name">
-                <br />
-                <br /> Zaidus Zhuhur
-              </span>
-              <br /> Founder Mobile Legends
+        <Container>
+          <div className={style.container}>
+            <div className="sub">
+              <h2>popular in towns</h2>
+              <Link to="/vehicles">view all {'>'} </Link>
             </div>
-            <Card backdrop="https://res.cloudinary.com/zazh/image/upload/v1665240114/image/1665240068872_gruaoh.jpg" />
+
+            <div className="content">
+              {this.state.data.map((v, k) => {
+                if (k < 4) {
+                  return (
+                    <Card
+                      key={k}
+                      id={v.vehicle_id}
+                      title={v.name}
+                      image={v.image}
+                      city={v.location}
+                    />
+                  )
+                }
+              })}
+            </div>
+
+            <div className={style.sub}>
+              <h2>testimonials</h2>
+            </div>
+
+            <div className="testimoni">
+              <div>
+                "it was the right decision to rent vehicle here, I spent less
+                money and enjoy the trip. It was an amazing experience to have a
+                ride for wildlife trip!"
+                <span className="name">
+                  <br />
+                  <br /> Zaidus Zhuhur
+                </span>
+                <br /> Founder Mobile Legends
+              </div>
+              <Card backdrop="https://res.cloudinary.com/zazh/image/upload/v1665240114/image/1665240068872_gruaoh.jpg" />
+            </div>
           </div>
-        </div>
+        </Container>
         <Footer />
       </>
     )

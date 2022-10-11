@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 function header(props) {
   return (
     <>
-      <Navbar expand="lg" className={style.nav}>
-        <Container>
+      <Container>
+        <Navbar expand="lg" className={style.nav}>
           <Navbar.Brand href="/">
             <img
               alt=""
@@ -51,8 +51,8 @@ function header(props) {
               </div>
             </Nav>
           </Navbar.Collapse>
-        </Container>
-      </Navbar>
+        </Navbar>
+      </Container>
     </>
   )
 }

@@ -40,7 +40,7 @@ export class Details extends Component {
 
           <div className={style.content}>
             {this.state.detail.map((v, k) => {
-              if (v.name == this.props.match.params.id) {
+              if (v.name == this.props.match.params.name) {
                 return (
                   <>
                     <img src={v.image} alt={v.name} className={style.image} />
@@ -61,15 +61,17 @@ export class Details extends Component {
                       <p className={style.price}>Rp. {v.price}/day</p>
                     </div>
                     <Row xs={1} md={2}>
-                      <Col>
-                        <Card>
-                          <Card.Img
-                            className={style.dispimage}
-                            variant="top"
-                            src={v.image}
-                          />
-                        </Card>
-                      </Col>
+                      {Array.from({ length: 2 }).map(() => (
+                        <Col>
+                          <Card>
+                            <Card.Img
+                              className={style.dispimage}
+                              variant="top"
+                              src={v.image}
+                            />
+                          </Card>
+                        </Col>
+                      ))}
                     </Row>
                     <div className={style.stock}>
                       <Button

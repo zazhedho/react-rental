@@ -16,7 +16,7 @@ function router() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/vehicles" component={Vehicle} />
         <Route exact path="/vehicles/:category" component={AllVehicle} />
-        <Route exact path="/detail/:id" component={Details} />
+        <Route exact path="/detail/:name" component={Details} />
       </Switch>
     </BrowserRouter>
   )

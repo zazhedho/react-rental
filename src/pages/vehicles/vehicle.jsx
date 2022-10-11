@@ -102,7 +102,7 @@ export class Vehicle extends Component {
             </div>
             <div className="sub">
               <h2>popular in towns</h2>
-              <Link to={'/vehicles/all'}>view all {'>'} </Link>
+              <Link to={'/vehicles/vehicle'}>view all {'>'} </Link>
             </div>
 
             <div className="content">

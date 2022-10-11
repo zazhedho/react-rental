@@ -13,22 +13,20 @@ export class Details extends Component {
     }
   }
 
-  getDataName = async () => {
+  getData = async () => {
     try {
       const { data: detail } = await axios.get(
-        process.env.REACT_APP_BASE_URL +
-          '/vehicles/search?name=' +
-          this.props.match.params.name
+        process.env.REACT_APP_BASE_URL + '/vehicles'
       )
       const dataVehicle = detail.data
-      this.setState({ data: dataVehicle })
+      this.setState({ detail: dataVehicle })
     } catch (error) {
       console.log(error)
     }
   }
 
   componentDidMount() {
-    this.getDataName()
+    this.getData()
   }
 
   render() {
@@ -41,59 +39,62 @@ export class Details extends Component {
           </div>
 
           <div className={style.content}>
-            <img
-              src={this.state.detail.image}
-              alt={this.state.detail.name}
-              className={style.image}
-            />
-            <div className={style.rightside}>
-              <h4>{this.state.detail.name}</h4>
-              <h5>{this.state.detail.location}</h5>
+            {this.state.detail.map((v, k) => {
+              if (v.name == this.props.match.params.id) {
+                return (
+                  <>
+                    <img src={v.image} alt={v.name} className={style.image} />
+                    <div className={style.rightside}>
+                      <h4>{v.name}</h4>
+                      <h5>{v.location}</h5>
 
-              <div className={style.status}>
-                <p className={style.ava}>{this.state.detail.status}</p>
-              </div>
+                      <div className={style.status}>
+                        <p className={style.ava}>{v.status}</p>
+                      </div>
 
-              <div className={style.desc}>
-                <p>Capacity: {this.state.detail.description}</p>
-                <p>Type: {this.state.detail.category}</p>
-                <p>Reservation : {this.state.detail.description} </p>
-              </div>
+                      <div className={style.desc}>
+                        <p>Capacity: {v.description}</p>
+                        <p>Type: {v.category}</p>
+                        <p>Reservation : {v.description} </p>
+                      </div>
 
-              <p className={style.price}>Rp. {this.state.detail.price}/day</p>
-            </div>
-            <Row xs={1} md={2}>
-              {Array.from({ length: 2 }).map((_, idx) => (
-                <Col>
-                  <Card>
-                    <Card.Img
-                      className={style.dispimage}
-                      variant="top"
-                      src={this.state.detail.image}
-                    />
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-            <div className={style.stock}>
-              <Button
-                disabled
-                variant="warning"
-                size="sm"
-                className={style.button1}
-              >
-                +
-              </Button>{' '}
-              <h3>{this.state.detail.stock}</h3>
-              <Button
-                disabled
-                variant="outline"
-                size="sm"
-                className={style.button1}
-              >
-                -
-              </Button>{' '}
-            </div>
+                      <p className={style.price}>Rp. {v.price}/day</p>
+                    </div>
+                    <Row xs={1} md={2}>
+                      <Col>
+                        <Card>
+                          <Card.Img
+                            className={style.dispimage}
+                            variant="top"
+                            src={v.image}
+                          />
+                        </Card>
+                      </Col>
+                    </Row>
+                    <div className={style.stock}>
+                      <Button
+                        disabled
+                        variant="warning"
+                        size="sm"
+                        className={style.button1}
+                      >
+                        +
+                      </Button>{' '}
+                      <h3>{v.stock}</h3>
+                      <Button
+                        disabled
+                        variant="outline"
+                        size="sm"
+                        className={style.button1}
+                      >
+                        -
+                      </Button>{' '}
+                    </div>
+                  </>
+                )
+              }
+            })}
+
             <div className={style.newdiv}>
               <Button variant="warning" size="sm" className={style.btn2}>
                 Reservation

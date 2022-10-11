@@ -17,7 +17,7 @@ export class AllVehicle extends Component {
   getAllVehicle = async () => {
     try {
       const { data } = await axios.get(
-        this.props.match.params.category == 'all'
+        this.props.match.params.category == 'vehicle'
           ? process.env.REACT_APP_BASE_URL + '/vehicles'
           : process.env.REACT_APP_BASE_URL +
               '/vehicles/category?category=' +
@@ -39,7 +39,7 @@ export class AllVehicle extends Component {
       <>
         <Header />
         <Container>
-          <h1>All Vehicle</h1>
+          <h1>All {this.props.match.params.category}</h1>
           <div className={style.container}>
             <div className="content">
               {this.state.data.map((v, k) => {

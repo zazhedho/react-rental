@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Header from '../../component/header/header'
 import Footer from '../../component/footer/footer'
+import Cards from '../../component/cards/cards'
 import Card from '../../component/cards/cards'
 import { Body, Flex, Button } from '../../component/style/Body'
 import axios from 'axios'
@@ -101,7 +102,7 @@ export class Home extends Component {
               {this.state.data.map((v, k) => {
                 if (k < 4) {
                   return (
-                    <Card
+                    <Cards
                       key={k}
                       id={v.vehicle_id}
                       title={v.name}

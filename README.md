@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+<h1 align="center">Vehicle Rental App</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3 align="center">
+    <a href="https://govehiclerental.netlify.app/" target="blank">View Demo</a>
+</h3>
+  
+  <div align="center">
+    <table>
+  <tr>
+    <th>
+      <img src="https://res.cloudinary.com/zazh/image/upload/v1665463176/image/login_whshen.png" width="400px" alt="Arkademylogo.svg" />
+        <p align="center">Login Page</p>
+    </th>
+    <th>
+      <img src="https://res.cloudinary.com/zazh/image/upload/v1665463174/image/vehicle-type_hytktu.png" width="400px" alt="Arkademylogo.svg" />
+        <p align="center">Vehicle Type Page</p>
+    </th>
+  </tr>
+ <tr>
+    <th>
+      <img src="https://res.cloudinary.com/zazh/image/upload/v1665463173/image/home_ah8b8l.png" width="400px" alt="Arkademylogo.svg" />
+        <p align="center">Home Page</p>
+    </th>
+    <th>
+      <img src="https://res.cloudinary.com/zazh/image/upload/v1665463172/image/detail_oa1v9z.png" width="400px" alt="Arkademylogo.svg" />
+        <p align="center">Detail Page</p>
+    </th>
+  </tr>
+</table>
+  </div>
 
-## Available Scripts
+## Built With
 
-In the project directory, you can run:
+[![React.js](https://img.shields.io/badge/React.js-18.x-orange.svg?style=rounded-square)](https://reactjs.org/)
+[![Golang](https://img.shields.io/badge/Golang-v.1.18-blue.svg?style=rounded-square)](https://golang.org/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-v4.6.x-blue)](https://github.com/react-bootstrap/react-bootstrap)
 
-### `yarn start`
+## Description about project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Vehicle-Rental App is an application of vehicle rental systems such as cars, motorcycles, and bike. Users can search vehicles by vehicle name, filter vehicles based on price, location and category of vehicles. In addition, users can also see the details of the vehicle to be rented.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Feature
 
-### `yarn test`
+- CRUD Vehicle
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation Steps
 
-### `yarn build`
+1. Clone the repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+    git clone https://github.com/zazhedho/react-rental.git
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   yarn install
+   ```
 
-### `yarn eject`
+3. Add .env file at root folder project
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```sh
+   REACT_APP_BASE_URL = Your Backend API
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Run the app
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   yarn start
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. You are all set!
 
-## Learn More
+   ```bash
+   View the website at: http://localhost:3000
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Backend Repository
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Backend API : go-VehicleRental - Backend [here](https://github.com/zazhedho/gorental.git)

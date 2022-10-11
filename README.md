@@ -32,8 +32,8 @@
 ## Built With
 
 [![React.js](https://img.shields.io/badge/React.js-18.x-orange.svg?style=rounded-square)](https://reactjs.org/)
-[![Golang](https://img.shields.io/badge/Golang-v.1.18-blue.svg?style=rounded-square)](https://golang.org/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-v4.6.x-blue)](https://github.com/react-bootstrap/react-bootstrap)
+[![Golang](https://img.shields.io/badge/Golang-v.1.19.x-blue.svg?style=rounded-square)](https://golang.org/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-v5.2.x-blue)](https://github.com/react-bootstrap/react-bootstrap)
 
 ## Description about project
 

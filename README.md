@@ -34,7 +34,7 @@
 [![React.js](https://img.shields.io/badge/React.js-18.x-orange.svg?style=rounded-square)](https://reactjs.org/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-v5.2.x-blue)](https://github.com/react-bootstrap/react-bootstrap)
 
-## Description about project
+## 🔗 Description
 
 Vehicle-Rental App is an application of vehicle rental systems such as cars, motorcycles, and bike. Users can search vehicles by vehicle name, filter vehicles based on price, location and category of vehicles. In addition, users can also see the details of the vehicle to be rented.
 
@@ -42,7 +42,7 @@ Vehicle-Rental App is an application of vehicle rental systems such as cars, mot
 
 - CRUD Vehicle
 
-## Installation Steps
+## 🛠️ Installation Steps
 
 1. Clone the repository
 
@@ -77,3 +77,7 @@ Vehicle-Rental App is an application of vehicle rental systems such as cars, mot
 ## Backend Repository
 
 Backend API : go-VehicleRental - Backend [here](https://github.com/zazhedho/gorental.git)
+
+## 🚀 About Me
+
+- Linkedin : [Zaidus Zhuhur](https://www.linkedin.com/in/zaidus-zhuhur/)

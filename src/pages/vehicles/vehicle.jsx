@@ -14,7 +14,35 @@ export class Vehicle extends Component {
       data: [],
       cars: [],
       motorcycle: [],
-      bike: []
+      bike: [],
+      searchQuery: '',
+      searchResult: null,
+      click: false
+    }
+  }
+
+  clickTrue = () => {
+    this.setState({ click: true })
+  }
+
+  setQuery = (event) => {
+    this.setState({ searchQuery: event.target.value })
+  }
+
+  searchVehicles = async () => {
+    try {
+      this.clickTrue()
+      const { res } = await axios.get(
+        process.env.REACT_APP_BASE_URL + '/vehicles/search',
+        {
+          params: { name: this.state.searchQuery }
+        }
+      )
+
+      const result = await res.data
+      this.setState({ searchResult: result })
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -83,19 +111,22 @@ export class Vehicle extends Component {
               <Form>
                 <Row>
                   <Col>
-                    <Form.Control type="name" placeholder="Vehicle Name" />
+                    <Form.Control
+                      onChange={this.setQuery}
+                      type="text"
+                      placeholder="vehicle name"
+                    />
                   </Col>
 
                   <Col>
-                    <Link to={'vehicles/search'}>
-                      <Button
-                        variant="warning"
-                        size="sm"
-                        className={style.button1}
-                      >
-                        Search
-                      </Button>{' '}
-                    </Link>
+                    <Button
+                      onClick={this.searchVehicles}
+                      variant="warning"
+                      size="sm"
+                      className={style.button1}
+                    >
+                      Search
+                    </Button>{' '}
                   </Col>
                 </Row>
               </Form>

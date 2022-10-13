@@ -39,7 +39,7 @@ export class AllVehicle extends Component {
       <>
         <Header />
         <Container>
-          <h1>All {this.props.match.params.category}</h1>
+          <h1>All </h1>
           <div className={style.container}>
             <div className="content">
               {this.state.data.map((v, k) => {

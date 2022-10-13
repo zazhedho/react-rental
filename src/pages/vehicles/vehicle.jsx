@@ -1,225 +1,212 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Form, Row, Col, Button, Container } from 'react-bootstrap'
 import style from './vehicle.module.css'
+import useApi from '../../helpers/useApi'
+// import withAuth from "../../helpers/withAuth";
 import Header from '../../component/header/header'
 import Footer from '../../component/footer/footer'
 import Card from '../../component/cards/cards'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-export class Vehicle extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      data: [],
-      cars: [],
-      motorcycle: [],
-      bike: [],
-      searchQuery: '',
-      searchResult: null,
-      click: false
-    }
+function Vehicle() {
+  const [prod, setProd] = useState([])
+  const [cars, setCars] = useState([])
+  const [motorcycle, setMotorcycle] = useState([])
+  const [bike, setBike] = useState([])
+  const [name, setName] = useState('')
+  const navigate = useNavigate()
+  const api = useApi()
+
+  const goSearch = () => {
+    navigate(`/search/${name}`)
   }
 
-  clickTrue = () => {
-    this.setState({ click: true })
+  const getPopularVehicle = () => {
+    api
+      .requests({
+        method: 'GET',
+        url: '/vehicles/popular'
+      })
+      .then((res) => {
+        const { data } = res.data
+        setProd(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
-  setQuery = (event) => {
-    this.setState({ searchQuery: event.target.value })
+  const getCars = () => {
+    api
+      .requests({
+        method: 'GET',
+        url: '/vehicles/category?category=cars'
+      })
+      .then((res) => {
+        const { data } = res.data
+        setCars(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
-  searchVehicles = async () => {
-    try {
-      this.clickTrue()
-      const { res } = await axios.get(
-        process.env.REACT_APP_BASE_URL + '/vehicles/search',
-        {
-          params: { name: this.state.searchQuery }
-        }
-      )
-
-      const result = await res.data
-      this.setState({ searchResult: result })
-    } catch (error) {
-      console.log(error)
-    }
+  const getMotorcycle = () => {
+    api
+      .requests({
+        method: 'GET',
+        url: '/vehicles/category?category=motor'
+      })
+      .then((res) => {
+        const { data } = res.data
+        setMotorcycle(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
-  getPopularVehicle = async () => {
-    try {
-      const { data } = await axios.get(
-        process.env.REACT_APP_BASE_URL + '/vehicles/popular'
-      )
-      const dataPopularVehicles = data.data
-      this.setState({ data: dataPopularVehicles })
-    } catch (error) {
-      console.log(error)
-    }
+  const getBike = () => {
+    api
+      .requests({
+        method: 'GET',
+        url: '/vehicles/category?category=bike'
+      })
+      .then((res) => {
+        const { data } = res.data
+        setBike(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
-  getCars = async () => {
-    try {
-      const { data: cars } = await axios.get(
-        process.env.REACT_APP_BASE_URL + '/vehicles/category?category=cars'
-      )
-      const dataCars = cars.data
-      this.setState({ cars: dataCars })
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // ComponentDidMount
+  useEffect(() => {
+    getPopularVehicle()
+    getCars()
+    getMotorcycle()
+    getBike()
+  }, [])
 
-  getMotorcycle = async () => {
-    try {
-      const { data: motorcycle } = await axios.get(
-        process.env.REACT_APP_BASE_URL + '/vehicles/category?category=motor'
-      )
-      const dataMotorcycle = motorcycle.data
-      this.setState({ motorcycle: dataMotorcycle })
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  return (
+    <>
+      <Header />
+      <Container>
+        <div className={style.container}>
+          <div className={style.search}>
+            <Form>
+              <Row>
+                <Col>
+                  <Form.Control
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="vehicle name"
+                  />
+                </Col>
 
-  getBike = async () => {
-    try {
-      const { data: bike } = await axios.get(
-        process.env.REACT_APP_BASE_URL + '/vehicles/category?category=bike'
-      )
-      const dataBike = bike.data
-      this.setState({ bike: dataBike })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  componentDidMount() {
-    this.getPopularVehicle()
-    this.getCars()
-    this.getMotorcycle()
-    this.getBike()
-  }
-
-  render() {
-    return (
-      <>
-        <Header />
-        <Container>
-          <div className={style.container}>
-            <div className={style.search}>
-              <Form>
-                <Row>
-                  <Col>
-                    <Form.Control
-                      onChange={this.setQuery}
-                      type="text"
-                      placeholder="vehicle name"
-                    />
-                  </Col>
-
-                  <Col>
-                    <Button
-                      onClick={this.searchVehicles}
-                      variant="warning"
-                      size="sm"
-                      className={style.button1}
-                    >
-                      Search
-                    </Button>{' '}
-                  </Col>
-                </Row>
-              </Form>
-            </div>
-            <div className="sub">
-              <h2>popular in towns</h2>
-              <Link to={'/vehicles/vehicle'}>view all {'>'} </Link>
-            </div>
-
-            <div className="content">
-              {this.state.data.map((v, k) => {
-                if (k < 4) {
-                  return (
-                    <Card
-                      key={k}
-                      id={v.vehicle_id}
-                      title={v.name}
-                      image={v.image}
-                      city={v.location}
-                    />
-                  )
-                }
-              })}
-            </div>
-
-            <div className="sub">
-              <h2>Cars</h2>
-              <Link to={'/vehicles/cars'}>view all {'>'} </Link>
-            </div>
-
-            <div className="content">
-              {this.state.cars.map((v, k) => {
-                if (k < 4) {
-                  return (
-                    <Card
-                      key={k}
-                      id={v.vehicle_id}
-                      title={v.name}
-                      image={v.image}
-                      city={v.location}
-                    />
-                  )
-                }
-              })}
-            </div>
-
-            <div className="sub">
-              <h2>Motorcycles</h2>
-              <Link to={'/vehicles/motorcycle'}>view all {'>'} </Link>
-            </div>
-
-            <div className="content">
-              {this.state.motorcycle.map((v, k) => {
-                if (k < 4) {
-                  return (
-                    <Card
-                      key={k}
-                      id={v.vehicle_id}
-                      title={v.name}
-                      image={v.image}
-                      city={v.location}
-                    />
-                  )
-                }
-              })}
-            </div>
-
-            <div className="sub">
-              <h2>Bike</h2>
-              <Link to={'/vehicles/bike'}>view all {'>'} </Link>
-            </div>
-
-            <div className="content">
-              {this.state.bike.map((v, k) => {
-                if (k < 4) {
-                  return (
-                    <Card
-                      key={k}
-                      id={v.vehicle_id}
-                      title={v.name}
-                      image={v.image}
-                      city={v.location}
-                    />
-                  )
-                }
-              })}
-            </div>
+                <Col>
+                  <Button
+                    onClick={goSearch}
+                    variant="warning"
+                    size="sm"
+                    className={style.button1}
+                  >
+                    Search
+                  </Button>{' '}
+                </Col>
+              </Row>
+            </Form>
           </div>
-        </Container>
-        <Footer />
-      </>
-    )
-  }
+          <div className="sub">
+            <h2>popular in towns</h2>
+            <Link to={'/vehicles/vehicle'}>view all {'>'} </Link>
+          </div>
+
+          <div className="content">
+            {prod.map((v, k) => {
+              if (k < 4) {
+                return (
+                  <Card
+                    key={k}
+                    id={v.vehicle_id}
+                    title={v.name}
+                    image={v.image}
+                    city={v.location}
+                  />
+                )
+              }
+            })}
+          </div>
+
+          <div className="sub">
+            <h2>Cars</h2>
+            <Link to={'/vehicles/cars'}>view all {'>'} </Link>
+          </div>
+
+          <div className="content">
+            {cars.map((v, k) => {
+              if (k < 4) {
+                return (
+                  <Card
+                    key={k}
+                    id={v.vehicle_id}
+                    title={v.name}
+                    image={v.image}
+                    city={v.location}
+                  />
+                )
+              }
+            })}
+          </div>
+
+          <div className="sub">
+            <h2>Motorcycles</h2>
+            <Link to={'/vehicles/motorcycle'}>view all {'>'} </Link>
+          </div>
+
+          <div className="content">
+            {motorcycle.map((v, k) => {
+              if (k < 4) {
+                return (
+                  <Card
+                    key={k}
+                    id={v.vehicle_id}
+                    title={v.name}
+                    image={v.image}
+                    city={v.location}
+                  />
+                )
+              }
+            })}
+          </div>
+
+          <div className="sub">
+            <h2>Bike</h2>
+            <Link to={'/vehicles/bike'}>view all {'>'} </Link>
+          </div>
+
+          <div className="content">
+            {bike.map((v, k) => {
+              if (k < 4) {
+                return (
+                  <Card
+                    key={k}
+                    id={v.vehicle_id}
+                    title={v.name}
+                    image={v.image}
+                    city={v.location}
+                  />
+                )
+              }
+            })}
+          </div>
+        </div>
+      </Container>
+      <Footer />
+    </>
+  )
 }
 
 export default Vehicle

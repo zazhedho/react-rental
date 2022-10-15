@@ -16,7 +16,10 @@ function AllVehicle() {
     api
       .requests({
         method: 'GET',
-        url: `/vehicles/category?category=${params.category}`
+        url:
+          `${params.category}` == 'vehicle'
+            ? `/vehicles/popular`
+            : `/vehicles/category?category=${params.category}`
       })
       .then((res) => {
         const { data } = res.data

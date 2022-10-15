@@ -1,65 +1,60 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import style from './vehicle.module.css'
 import Header from '../../component/header/header'
 import Footer from '../../component/footer/footer'
 import Card from '../../component/cards/cards'
-import axios from 'axios'
+import { useParams } from 'react-router-dom'
+import useApi from '../../helpers/useApi'
 
-export class AllVehicle extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      data: []
-    }
+function AllVehicle() {
+  const [category, setCategory] = useState([])
+  const params = useParams()
+  const api = useApi()
+
+  const getAllVehicle = () => {
+    api
+      .requests({
+        method: 'GET',
+        url: `/vehicles/category?category=${params.category}`
+      })
+      .then((res) => {
+        const { data } = res.data
+        setCategory(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
-  getAllVehicle = async () => {
-    try {
-      const { data } = await axios.get(
-        this.props.match.params.category == 'vehicle'
-          ? process.env.REACT_APP_BASE_URL + '/vehicles'
-          : process.env.REACT_APP_BASE_URL +
-              '/vehicles/category?category=' +
-              this.props.match.params.category
-      )
-      const dataAllVehicles = data.data
-      this.setState({ data: dataAllVehicles })
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  useEffect(() => {
+    getAllVehicle()
+  }, [])
 
-  componentDidMount() {
-    this.getAllVehicle()
-  }
-
-  render() {
-    return (
-      <>
-        <Header />
-        <Container>
-          <h1>All </h1>
-          <div className={style.container}>
-            <div className="content">
-              {this.state.data.map((v, k) => {
-                return (
-                  <Card
-                    key={k}
-                    id={v.vehicle_id}
-                    title={v.name}
-                    image={v.image}
-                    city={v.location}
-                  />
-                )
-              })}
-            </div>
+  return (
+    <>
+      <Header />
+      <Container>
+        <h1>All {params.category} </h1>
+        <div className={style.container}>
+          <div className="content">
+            {category.map((v, k) => {
+              return (
+                <Card
+                  key={k}
+                  id={v.vehicle_id}
+                  title={v.name}
+                  image={v.image}
+                  city={v.location}
+                />
+              )
+            })}
           </div>
-        </Container>
-        <Footer />
-      </>
-    )
-  }
+        </div>
+      </Container>
+      <Footer />
+    </>
+  )
 }
 
 export default AllVehicle

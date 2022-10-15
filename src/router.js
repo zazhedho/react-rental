@@ -7,6 +7,8 @@ import Register from './pages/register/register'
 import Vehicle from './pages/vehicles/vehicle'
 import AllVehicle from './pages/vehicles/viewAll'
 import Search from './pages/search/search'
+import SortLocation from './pages/sortLocation/sortlocation'
+import Category from './pages/sortType/sorttype'
 
 function router() {
   return (
@@ -19,6 +21,8 @@ function router() {
         <Route exact path="/vehicles/:category" element={<AllVehicle />} />
         <Route exact path="/detail/:name" element={<Details />} />
         <Route exact path="/search/:name" element={<Search />} />
+        <Route exact path="/location/:location" element={<SortLocation />} />
+        <Route exact path="/type/:type" element={<Category />} />
       </Routes>
     </BrowserRouter>
   )

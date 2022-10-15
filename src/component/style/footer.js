@@ -37,6 +37,6 @@ export const Content = styled.div`
     font-weight: normal;
     padding-top: 1rem;
     color: #848484;
-    font-size: 17px;
+    font-size: 100%;
   }
 `

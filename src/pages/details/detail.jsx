@@ -103,21 +103,21 @@ function Details() {
                   </Row>
                   <div className={style.stock}>
                     <Button
-                      onClick={calcPlus}
-                      variant="warning"
-                      size="sm"
-                      className={style.button1}
-                    >
-                      +
-                    </Button>{' '}
-                    <h3>{vehicle.quantity}</h3>
-                    <Button
                       onClick={calcMin}
                       variant="outline"
                       size="sm"
                       className={style.button1}
                     >
                       -
+                    </Button>{' '}
+                    <h3>{vehicle.quantity}</h3>
+                    <Button
+                      onClick={calcPlus}
+                      variant="warning"
+                      size="sm"
+                      className={style.button1}
+                    >
+                      +
                     </Button>{' '}
                   </div>
                 </>

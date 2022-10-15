@@ -1,10 +1,16 @@
 import React from 'react'
 import style from './header.module.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../store/reducer/user'
 import logo from './logo.png'
 import { Navbar, Container, Nav, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-function header(props) {
+function Header(props) {
+  const dispatch = useDispatch()
+  const { pathname } = useLocation()
+  const { isAuth } = useSelector((state) => state.users)
+
   return (
     <>
       <Container>
@@ -22,32 +28,70 @@ function header(props) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <div className={style.navbold}>
-                <Link to={'/'} className={style.a}>
-                  Home
-                </Link>
-                <Link to={'/vehicles'} className={style.a}>
-                  Vehicle Type
-                </Link>
-                <Link to={'/histories'} className={style.a}>
-                  History
-                </Link>
-                <Link to={'/about'} className={style.a}>
-                  About
-                </Link>
-                <Link to={'/login'} className={style.a}>
-                  <Button
-                    variant="outline-warning"
-                    size="sm"
-                    className={style.button1}
-                  >
-                    Login
-                  </Button>{' '}
-                </Link>
-                <Link to={'/register'} className={style.a}>
-                  <Button variant="warning" size="sm" className={style.button1}>
-                    Register
-                  </Button>{' '}
-                </Link>
+                {(!isAuth && pathname === '/') ||
+                (!isAuth && pathname === '/vehicles') ||
+                (!isAuth && pathname === '/search/') ? (
+                  <>
+                    <Link to={'/'} className={style.a}>
+                      Home
+                    </Link>
+                    <Link to={'/vehicles'} className={style.a}>
+                      Vehicle Type
+                    </Link>
+                    <Link to={'/histories'} className={style.a}>
+                      History
+                    </Link>
+                    <Link to={'/about'} className={style.a}>
+                      About
+                    </Link>
+
+                    <Link to={'/login'} className={style.a}>
+                      <Button
+                        variant="outline-warning"
+                        size="sm"
+                        className={style.button1}
+                      >
+                        Login
+                      </Button>{' '}
+                    </Link>
+                    <Link to={'/register'} className={style.a}>
+                      <Button
+                        variant="warning"
+                        size="sm"
+                        className={style.button1}
+                      >
+                        Register
+                      </Button>{' '}
+                    </Link>
+                  </>
+                ) : (isAuth && pathname === '/') ||
+                  (isAuth && pathname === '/vehicles') ||
+                  (isAuth && pathname === '/search/') ? (
+                  <>
+                    <Link to={'/'} className={style.a}>
+                      Home
+                    </Link>
+                    <Link to={'/vehicles'} className={style.a}>
+                      Vehicle Type
+                    </Link>
+                    <Link to={'/histories'} className={style.a}>
+                      History
+                    </Link>
+                    <Link to={'/about'} className={style.a}>
+                      About
+                    </Link>
+                    <Link to={'/'} className={style.a}>
+                      <Button
+                        onClick={() => dispatch(logout())}
+                        variant="warning"
+                        size="sm"
+                        className={style.button1}
+                      >
+                        Log out
+                      </Button>{' '}
+                    </Link>
+                  </>
+                ) : null}
               </div>
             </Nav>
           </Navbar.Collapse>
@@ -57,4 +101,4 @@ function header(props) {
   )
 }
 
-export default header
+export default Header

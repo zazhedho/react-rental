@@ -8,9 +8,8 @@ function Cards(props) {
       <div>
         <Link to={'/detail/' + props.title} className="LinkStyle">
           <h4>{props.title}</h4>
+          <p>{props.city}</p>
         </Link>
-
-        <p>{props.city}</p>
       </div>
     </Card>
   )

@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Header from '../../component/header/header'
 import Footer from '../../component/footer/footer'
-// import Cards from '../../component/cards/cards'
 import Card from '../../component/cards/cards'
 import { Body, Flex, Button } from '../../component/style/Body'
 
@@ -86,7 +85,7 @@ function Home() {
                 Type
               </option>
               <option value="Cars">Cars</option>
-              <option value="Motorbike">Motorcycle</option>
+              <option value="Motorcycle">Motorcycle</option>
               <option value="Bike">Bike</option>
             </select>
           </Flex>

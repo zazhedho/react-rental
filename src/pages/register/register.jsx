@@ -11,8 +11,10 @@ import { addUsers } from '../../store/reducer/user'
 
 function Register() {
   const [Users, setUsers] = useState({
-    username: 'username',
-    password: 'password'
+    username: '',
+    password: '',
+    email: '',
+    role: 'user'
   })
 
   const { isAuth } = useSelector((state) => state.users)
@@ -42,19 +44,27 @@ function Register() {
   }
 
   const register = () => {
-    api
-      .requests({
-        method: 'POST',
-        url: '/users/register',
-        data: Users
-      })
-      .then((res) => {
-        dispatch(addUsers(res.data))
-        navigate('/login')
-      })
-      .catch((err) => {
-        alert(err)
-      })
+    if (Users.username === '' || Users.password === '' || Users.email === '') {
+      alert('semua kolom wajib diisi')
+    } else if (Users.username != Users.username.toLowerCase()) {
+      alert('username harus menggunakan huruf kecil')
+    } else if (Users.password.length < 8) {
+      alert('input password minimal 8 karakter')
+    } else {
+      api
+        .requests({
+          method: 'POST',
+          url: '/users/register',
+          data: Users
+        })
+        .then((res) => {
+          dispatch(addUsers(res.data))
+          navigate('/login')
+        })
+        .catch((err) => {
+          alert(err)
+        })
+    }
   }
 
   return (
@@ -78,21 +88,23 @@ function Register() {
               <Form.Group className={style.line}>
                 <Form.Group className={style.parent2} id="name" name="name">
                   <Form.Control
-                    onChange={onChangeInput}
                     className={style.form}
-                    type="username"
+                    type="text"
                     name="username"
                     placeholder="Username"
+                    onChange={onChangeInput}
+                    required
                   />
                 </Form.Group>
 
                 <Form.Group className={style.parent2} id="email" name="email">
                   <Form.Control
-                    onChange={onChangeInput}
                     className={style.form}
                     type="email"
                     name="email"
                     placeholder="Email"
+                    onChange={onChangeInput}
+                    required
                   />
                 </Form.Group>
 
@@ -102,19 +114,20 @@ function Register() {
                   name="password"
                 >
                   <Form.Control
-                    onChange={onChangeInput}
                     className={style.form}
                     type="password"
                     name="password"
                     placeholder="Password"
+                    onChange={onChangeInput}
+                    required
                   />
                 </Form.Group>
 
                 <Form.Group className={style.parent2}>
                   <Button
-                    onClick={register}
                     variant="warning"
                     className={style.btn2}
+                    onClick={register}
                   >
                     Sign Up
                   </Button>{' '}

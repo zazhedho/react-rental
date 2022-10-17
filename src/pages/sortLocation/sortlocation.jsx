@@ -71,7 +71,7 @@ function Location() {
         </div>
         <div className={style.container}>
           <div className="sub">
-            <h2>Result</h2>
+            <h2>Result for {params.location}</h2>
             <Link to="/vehicles">view all {'>'} </Link>
           </div>
 

@@ -9,6 +9,9 @@ import AllVehicle from './pages/vehicles/viewAll'
 import Search from './pages/search/search'
 import SortLocation from './pages/sortLocation/sortlocation'
 import Category from './pages/sortType/sorttype'
+import AddVehicle from './pages/addVehicle/addvehicle'
+import Admin from './pages/admin/admin'
+import Update from './pages/update/update'
 
 function router() {
   return (
@@ -23,6 +26,9 @@ function router() {
         <Route exact path="/search/:name" element={<Search />} />
         <Route exact path="/location/:location" element={<SortLocation />} />
         <Route exact path="/type/:type" element={<Category />} />
+        <Route exact path="/add" element={<AddVehicle />} />
+        <Route exact path="/admin" element={<Admin />} />
+        <Route exact path="/update/:id" element={<Update />} />
       </Routes>
     </BrowserRouter>
   )

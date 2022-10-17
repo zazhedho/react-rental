@@ -11,8 +11,8 @@ import { login } from '../../store/reducer/user'
 
 function Login() {
   const [Users, setUsers] = useState({
-    username: 'username',
-    password: 'password'
+    username: '',
+    password: ''
   })
 
   const { isAuth } = useSelector((state) => state.users)
@@ -42,19 +42,27 @@ function Login() {
   }
 
   const loginUser = () => {
-    api
-      .requests({
-        method: 'POST',
-        url: '/login',
-        data: Users
-      })
-      .then((res) => {
-        const { data } = res.data
-        dispatch(login(data.token))
-      })
-      .catch((err) => {
-        alert(err)
-      })
+    if (Users.username === '' || Users.password === '') {
+      alert('semua kolom wajib diisi')
+    } else if (Users.username != Users.username.toLowerCase()) {
+      alert('username harus huruf kecil')
+    } else if (Users.password.length < 8) {
+      alert('input password minimal 8 karakter')
+    } else {
+      api
+        .requests({
+          method: 'POST',
+          url: '/login',
+          data: Users
+        })
+        .then((res) => {
+          const { data } = res.data
+          dispatch(login(data.token))
+        })
+        .catch((err) => {
+          alert(err)
+        })
+    }
   }
 
   return (
@@ -94,6 +102,7 @@ function Login() {
                         type="text"
                         name="username"
                         placeholder="Username"
+                        required
                       />
                     </Form.Group>
 
@@ -104,6 +113,7 @@ function Login() {
                         type="password"
                         name="password"
                         placeholder="Password"
+                        required
                       />
                     </Form.Group>
 

@@ -1,15 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './header.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../store/reducer/user'
 import logo from './logo.png'
 import { Navbar, Container, Nav, Button } from 'react-bootstrap'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import useApi from '../../helpers/useApi'
 
 function Header(props) {
   const dispatch = useDispatch()
-  const { pathname } = useLocation()
   const { isAuth } = useSelector((state) => state.users)
+  const [data, setData] = useState([])
+  const api = useApi()
+
+  const getUsername = () => {
+    api
+      .requests({
+        method: 'GET',
+        url: `/users/profile`
+      })
+      .then((res) => {
+        const { data } = res.data
+        setData(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  useEffect(() => {
+    getUsername()
+  }, [])
 
   return (
     <>
@@ -28,9 +49,7 @@ function Header(props) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <div className={style.navbold}>
-                {(!isAuth && pathname === '/') ||
-                (!isAuth && pathname === '/vehicles') ||
-                (!isAuth && pathname === '/search/') ? (
+                {!isAuth ? (
                   <>
                     <Link to={'/'} className={style.a}>
                       Home
@@ -64,9 +83,7 @@ function Header(props) {
                       </Button>{' '}
                     </Link>
                   </>
-                ) : (isAuth && pathname === '/') ||
-                  (isAuth && pathname === '/vehicles') ||
-                  (isAuth && pathname === '/search/') ? (
+                ) : (
                   <>
                     <Link to={'/'} className={style.a}>
                       Home
@@ -77,21 +94,25 @@ function Header(props) {
                     <Link to={'/histories'} className={style.a}>
                       History
                     </Link>
-                    <Link to={'/about'} className={style.a}>
+                    <a
+                      href="https://www.linkedin.com/in/zaidus-zhuhur/"
+                      className={style.a}
+                    >
                       About
-                    </Link>
+                    </a>
                     <Link to={'/'} className={style.a}>
                       <Button
                         onClick={() => dispatch(logout())}
-                        variant="warning"
+                        variant="outline-dark"
                         size="sm"
                         className={style.button1}
                       >
-                        Log out
+                        Hi,
+                        <span> {data.username} </span>
                       </Button>{' '}
                     </Link>
                   </>
-                ) : null}
+                )}
               </div>
             </Nav>
           </Navbar.Collapse>

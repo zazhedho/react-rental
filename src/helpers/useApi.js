@@ -9,7 +9,7 @@ function useApi(urls = '') {
     baseURL: process.env.REACT_APP_BASE_URL || urls,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token.token}`
+      Authorization: `Bearer ${token}`
     }
   })
 
@@ -18,7 +18,7 @@ function useApi(urls = '') {
       ...requests,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token.token}`
+        Authorization: `Bearer ${token}`
       }
     })
   }

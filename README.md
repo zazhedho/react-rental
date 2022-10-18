@@ -41,6 +41,12 @@ Vehicle-Rental App is an application of vehicle rental systems such as cars, mot
 ## Feature
 
 - CRUD Vehicle
+- Register
+- Login
+- Search
+- Filter by Location
+- Filter by Type
+- Page Admin
 
 ## 🛠️ Installation Steps
 

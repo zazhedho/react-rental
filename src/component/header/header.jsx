@@ -100,7 +100,8 @@ function Header(props) {
                     >
                       About
                     </a>
-                    <Link to={'/'} className={style.a}>
+
+                    <Link to={'/login'} className={style.a}>
                       <Button
                         onClick={() => dispatch(logout())}
                         variant="outline-dark"
